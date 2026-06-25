@@ -116,13 +116,13 @@ function LandingPage() {
         ))}
       </div>
 
-      <motion.div 
+      <motion.div
         className="text-center space-y-8 relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.h1 
+        <motion.h1
           className="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400"
           animate={{
             filter: ['drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))', 'drop-shadow(0 0 40px rgba(168, 85, 247, 0.8))', 'drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))']
@@ -132,7 +132,7 @@ function LandingPage() {
           For You
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           className="text-xl md:text-2xl text-pink-200 font-light"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -148,7 +148,7 @@ function LandingPage() {
           transition={{ delay: 0.8 }}
         >
 
-          <div className="flex justify-center gap-4 md:gap-6 flex-wrap">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-md md:max-w-none mx-auto">
             {[
               { value: timeLeft.days, label: 'DAYS' },
               { value: timeLeft.hours, label: 'HOURS' },
