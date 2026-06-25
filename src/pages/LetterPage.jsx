@@ -31,7 +31,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
 - Dari aku, Vano -`
 
   // ✅ Generate random positions SEKALI SAJA dengan useMemo
-  const starPositions = useMemo(() => 
+  const starPositions = useMemo(() =>
     [...Array(50)].map(() => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -41,7 +41,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
     })), []
   )
 
-  const heartPositions = useMemo(() => 
+  const heartPositions = useMemo(() =>
     [...Array(8)].map(() => ({
       startX: Math.random() * 100,
       endX: Math.random() * 100,
@@ -69,7 +69,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
   // Typewriter effect
   useEffect(() => {
     const speed = 10
-    
+
     const typeWriter = () => {
       if (indexRef.current < letterText.length) {
         setCurrentText(letterText.substring(0, indexRef.current + 1))
@@ -81,7 +81,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
     }
 
     timerRef.current = setTimeout(typeWriter, 1500)
-    
+
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current)
@@ -100,7 +100,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
           console.log('✅ Musik berhasil diputar otomatis!')
         } catch (err) {
           console.log('❌ Autoplay diblokir browser, mencoba lagi...', err)
-          
+
           setTimeout(async () => {
             try {
               await audioRef.current.play()
@@ -254,7 +254,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               className="relative min-h-[400px] md:min-h-[500px] pt-8"
             >
               {/* Polaroid di KIRI ATAS - Lebih kecil di mobile */}
-              <div className="absolute left-0 md:left-0 top-28 md:top-0 w-24 md:w-32 lg:w-40 z-10">
+              <div className="absolute left-0 md:left-0 top-28 md:top-0 w-24 md:w-32 lg:w-40 z-0">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: -15 }}
                   animate={{ opacity: 1, scale: 1, rotate: -12 }}
@@ -279,7 +279,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               </div>
 
               {/* Polaroid di KIRI BAWAH - Hidden di mobile */}
-              <div className="absolute left-2 md:left-10 top-32 md:top-40 w-20 md:w-28 lg:w-36 z-20 hidden md:block">
+              <div className="absolute left-2 md:left-10 top-64 md:top-40 w-20 md:w-28 lg:w-36 z-0 hidden md:block">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: 10 }}
                   animate={{ opacity: 1, scale: 1, rotate: 8 }}
@@ -308,7 +308,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 initial={{ opacity: 0, y: -50, scale: 0.5 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.5 }}
-                className="text-center space-y-4 relative z-10 px-4 md:px-20 lg:px-40 mt-16 md:mt-0"
+                className="text-center space-y-4 relative z-20 px-4 md:px-20 lg:px-40 mt-16 md:mt-0"
               >
                 <motion.div
                   initial={{ rotate: -180, scale: 0 }}
@@ -318,9 +318,9 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 >
                   <Sparkles className="w-8 h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-2" />
                 </motion.div>
-                
+
                 {/* ✅ DIPERBAIKI: Tambah px-4 py-2 leading-tight agar tidak terpotong */}
-                <motion.h1 
+                <motion.h1
                   className="text-3xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent px-2 md:px-4 py-2 leading-tight"
                   animate={{
                     filter: ['drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))', 'drop-shadow(0 0 40px rgba(168, 85, 247, 0.8))', 'drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))']
@@ -329,8 +329,8 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 >
                   Happy Birthday!
                 </motion.h1>
-                
-                <motion.h2 
+
+                <motion.h2
                   className="text-2xl md:text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300"
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -338,7 +338,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 >
                   Bebekk
                 </motion.h2>
-                
+
                 <div className="flex justify-center items-center gap-3 text-pink-300">
                   <motion.div
                     animate={{ scale: [1, 1.3, 1], rotate: [0, 15, -15, 0] }}
@@ -357,7 +357,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               </motion.div>
 
               {/* Polaroid di KANAN ATAS - Lebih kecil di mobile */}
-              <div className="absolute right-0 md:right-0 top-28 md:top-10 w-24 md:w-32 lg:w-40 z-10">
+              <div className="absolute right-0 md:right-0 top-28 md:top-10 w-24 md:w-32 lg:w-40 z-0">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: 15 }}
                   animate={{ opacity: 1, scale: 1, rotate: 12 }}
@@ -382,7 +382,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               </div>
 
               {/* Polaroid di KANAN BAWAH - Hidden di mobile */}
-              <div className="absolute right-2 md:right-10 top-32 md:top-48 w-20 md:w-28 lg:w-36 z-20 hidden md:block">
+              <div className="absolute right-2 md:right-10 top-72 md:top-48 w-20 md:w-28 lg:w-36 z-0 hidden md:block">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: -10 }}
                   animate={{ opacity: 1, scale: 1, rotate: -8 }}
@@ -420,12 +420,12 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               <Card className="shadow-2xl border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl">
                 <CardContent className="pt-10 pb-10 px-6 md:px-12">
                   <div className="max-w-none">
-                    <p 
-                      className="whitespace-pre-line text-gray-200 leading-relaxed text-lg md:text-xl font-light" 
+                    <p
+                      className="whitespace-pre-line text-gray-200 leading-relaxed text-lg md:text-xl font-light"
                       style={{ fontFamily: 'Georgia, serif' }}
                     >
                       {currentText}
-                      <motion.span 
+                      <motion.span
                         animate={{ opacity: [1, 0, 1] }}
                         transition={{ duration: 0.8, repeat: Infinity }}
                         className="text-pink-400"
@@ -449,7 +449,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               transition={{ duration: 0.8 }}
               className="pt-8 pb-8"
             >
-              <motion.h2 
+              <motion.h2
                 className="text-3xl md:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300 mb-12"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -473,39 +473,38 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                      animate={{ 
-                        opacity: 1, 
-                        scale: 1, 
-                        rotate: positions[index].rotate 
+                      animate={{
+                        opacity: 1,
+                        scale: 1,
+                        rotate: positions[index].rotate
                       }}
-                      transition={{ 
+                      transition={{
                         delay: 0.5 + index * 0.2,
                         type: 'spring',
                         stiffness: 100
                       }}
-                      whileHover={{ 
-                        scale: 1.15, 
-                        rotate: 0, 
+                      whileHover={{
+                        scale: 1.15,
+                        rotate: 0,
                         zIndex: 50,
                         transition: { duration: 0.3 }
                       }}
-                      className={`${
-                        isMobile 
-                          ? 'relative w-[45%] inline-block m-2' 
+                      className={`${isMobile
+                          ? 'relative w-[45%] inline-block m-2'
                           : 'absolute w-56 md:w-64'
-                      }`}
+                        }`}
                       style={
-                        isMobile 
-                          ? {} 
+                        isMobile
+                          ? {}
                           : {
-                              top: positions[index].top,
-                              left: positions[index].left,
-                            }
+                            top: positions[index].top,
+                            left: positions[index].left,
+                          }
                       }
                     >
                       <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-lg p-3 pb-12 shadow-2xl shadow-purple-500/20 relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
-                        
+
                         <div className="aspect-square rounded-md overflow-hidden bg-black/30 relative">
                           <img
                             src={photo.src}
@@ -531,7 +530,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 })}
               </div>
 
-              <motion.p 
+              <motion.p
                 className="text-center text-pink-200/80 mt-16 italic text-lg"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
