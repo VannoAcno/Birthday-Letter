@@ -308,7 +308,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 initial={{ opacity: 0, y: -50, scale: 0.5 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.5 }}
-                className="text-center space-y-4 relative z-10 px-4 md:px-20 lg:px-40 mt-8 md:mt-0"
+                className="text-center space-y-4 relative z-10 px-4 md:px-20 lg:px-40 mt-16 md:mt-0"
               >
                 <motion.div
                   initial={{ rotate: -180, scale: 0 }}
