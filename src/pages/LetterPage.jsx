@@ -254,7 +254,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               className="relative min-h-[400px] md:min-h-[500px] pt-8"
             >
               {/* Polaroid di KIRI ATAS - Lebih kecil di mobile */}
-              <div className="absolute left-0 md:left-0 top-28 md:top-0 w-24 md:w-32 lg:w-40 z-0">
+              <div className="absolute left-0 md:left-0 top-28 md:top-16 w-24 md:w-32 lg:w-40 z-0">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: -15 }}
                   animate={{ opacity: 1, scale: 1, rotate: -12 }}
