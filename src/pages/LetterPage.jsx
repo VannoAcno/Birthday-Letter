@@ -301,8 +301,9 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                   <Sparkles className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
                 </motion.div>
                 
+                {/* ✅ DIPERBAIKI: Tambah px-4 py-2 leading-tight agar tidak terpotong */}
                 <motion.h1 
-                  className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent"
+                  className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent px-4 py-2 leading-tight"
                   animate={{
                     filter: ['drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))', 'drop-shadow(0 0 40px rgba(168, 85, 247, 0.8))', 'drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))']
                   }}

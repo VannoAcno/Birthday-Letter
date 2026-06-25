@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Calendar } from "lucide-react"
 
 function CountdownPage({ onComplete }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [isComplete, setIsComplete] = useState(false)
 
-  // Countdown ke 27 Juni 2026
+  // Countdown ke 25 Juni 2026, jam 15:10 (3:10 PM)
   useEffect(() => {
-    const targetDate = new Date('2026-06-27T00:00:00').getTime()
+    const targetDate = new Date('2026-06-25T15:10:00').getTime()
     
     const updateCountdown = () => {
       const now = new Date().getTime()
@@ -39,10 +38,6 @@ function CountdownPage({ onComplete }) {
 
     return () => clearInterval(interval)
   }, [onComplete])
-
-  const handleSkip = () => {
-    onComplete()
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-4 relative overflow-hidden">
@@ -98,7 +93,7 @@ function CountdownPage({ onComplete }) {
               ease: "linear" 
             }}
           >
-            {['🌸', '🌹', '🌷', '💐', ''][i % 5]}
+            {['🌸', '🌹', '🌷', '', ''][i % 5]}
           </motion.div>
         ))}
       </div>
@@ -109,7 +104,7 @@ function CountdownPage({ onComplete }) {
         animate={{ opacity: 1, scale: 1 }}
         className="text-center z-10 w-full max-w-2xl flex flex-col items-center"
       >
-        {/* ===== BAGIAN ATAS: For You, My Love ===== */}
+        {/* ===== BAGIAN ATAS: For You ===== */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -126,7 +121,7 @@ function CountdownPage({ onComplete }) {
           </motion.div>
 
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400 mb-2 font-serif">
-            For You, My Love
+            For You
           </h1>
           
           <p className="text-pink-200 text-lg">
@@ -147,7 +142,7 @@ function CountdownPage({ onComplete }) {
               animate={{ opacity: 1, scale: 1 }}
               className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 py-8"
             >
-              🎉 It's Her Day! 
+               It's Her Day! 
             </motion.div>
           ) : (
             <>
@@ -195,29 +190,11 @@ function CountdownPage({ onComplete }) {
                 transition={{ delay: 1.2 }}
                 className="text-pink-200/60 text-sm"
               >
-                27 Juni 2026
+                25 Juni 2026 - 15:10
               </motion.p>
             </>
           )}
         </motion.div>
-
-        {/* ===== BAGIAN BAWAH: Skip Button ===== */}
-        {!isComplete && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
-            className="mt-4"
-          >
-            <Button
-              onClick={handleSkip}
-              className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-3 rounded-xl flex items-center gap-2 transition-all hover:scale-105"
-            >
-              Skip Countdown
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-          </motion.div>
-        )}
       </motion.div>
     </div>
   )

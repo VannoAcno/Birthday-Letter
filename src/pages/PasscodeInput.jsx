@@ -144,11 +144,11 @@ function PasscodeInput({ onComplete }) {
         </motion.div>
 
         <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400 mb-2 font-serif">
-          For You, My Love
+          For You
         </h1>
         
         <p className="text-pink-200 mb-8 text-lg">
-          Enter our special date
+          Enter your special date
         </p>
 
         {/* Passcode inputs */}
@@ -184,7 +184,7 @@ function PasscodeInput({ onComplete }) {
         )}
 
         <p className="text-pink-200/60 text-xs md:text-sm">
-          Format: DDMMYY (contoh: 270607)
+          Format: DDMMYY (contoh: 110707)
         </p>
       </motion.div>
     </div>
