@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -29,6 +29,26 @@ Terima kasih sudah pernah ada. Terima kasih untuk semua kenangan indahnya.
 Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
 
 - Dari aku, Vano -`
+
+  // ✅ Generate random positions SEKALI SAJA dengan useMemo
+  const starPositions = useMemo(() => 
+    [...Array(50)].map(() => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 3 + 1,
+      duration: 3 + Math.random() * 4,
+      delay: Math.random() * 2
+    })), []
+  )
+
+  const heartPositions = useMemo(() => 
+    [...Array(8)].map(() => ({
+      startX: Math.random() * 100,
+      endX: Math.random() * 100,
+      duration: 10 + Math.random() * 10,
+      delay: Math.random() * 16
+    })), []
+  )
 
   // 🎊 Confetti
   useEffect(() => {
@@ -74,14 +94,13 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
     const playAudio = async () => {
       if (audioRef.current) {
         try {
-          audioRef.current.volume = 0.5 // Set volume 50%
+          audioRef.current.volume = 0.5
           await audioRef.current.play()
           setIsPlaying(true)
           console.log('✅ Musik berhasil diputar otomatis!')
         } catch (err) {
           console.log('❌ Autoplay diblokir browser, mencoba lagi...', err)
           
-          // Coba lagi setelah delay singkat
           setTimeout(async () => {
             try {
               await audioRef.current.play()
@@ -95,7 +114,6 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
       }
     }
 
-    // Delay sedikit untuk memastikan audio element ready
     const timer = setTimeout(() => {
       playAudio()
     }, 500)
@@ -121,10 +139,10 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
 
   // 📸 Foto untuk HEADER (Polaroid kiri & kanan di atas)
   const headerPhotos = [
-    { src: '/photos/photo5.webp', caption: '' },  // Kiri atas
-    { src: '/photos/photo4.webp', caption: '' },  // Kiri bawah
-    { src: '/photos/photo4.webp', caption: '' },  // Kanan atas
-    { src: '/photos/photo4.webp', caption: '' },  // Kanan bawah
+    { src: '/photos/photo5.webp', caption: '' },
+    { src: '/photos/photo4.webp', caption: '' },
+    { src: '/photos/photo4.webp', caption: '' },
+    { src: '/photos/photo4.webp', caption: '' },
   ]
 
   // 📸 Foto untuk GALLERY (di bawah)
@@ -137,54 +155,54 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-pink-900 p-4 md:p-8 relative overflow-hidden">
-      {/* Animated Background Stars */}
+      {/* Animated Background Stars - Posisi konsisten */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(50)].map((_, i) => (
+        {starPositions.map((star, i) => (
           <motion.div
             key={i}
             className="absolute bg-white rounded-full"
             style={{
-              width: Math.random() * 3 + 'px',
-              height: Math.random() * 3 + 'px',
+              width: star.size + 'px',
+              height: star.size + 'px',
+              left: star.x + '%',
+              top: star.y + '%',
             }}
-            initial={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: 0
-            }}
+            initial={{ opacity: 0 }}
             animate={{
               opacity: [0, 1, 0],
               scale: [1, 1.5, 1]
             }}
             transition={{
-              duration: 3 + Math.random() * 4,
+              duration: star.duration,
               repeat: Infinity,
-              delay: Math.random() * 2
+              delay: star.delay
             }}
           />
         ))}
       </div>
 
-      {/* Floating Hearts */}
+      {/* Floating Hearts - Posisi konsisten */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {heartPositions.map((heart, i) => (
           <motion.div
             key={i}
             className="absolute text-4xl"
+            style={{
+              left: heart.startX + '%'
+            }}
             initial={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-              y: typeof window !== 'undefined' ? window.innerHeight + 100 : 900,
+              y: '100vh',
               rotate: 0
             }}
             animate={{
               y: -100,
               rotate: 360,
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000)
+              x: [0, (heart.endX - heart.startX) * 5, 0]
             }}
             transition={{
-              duration: 10 + Math.random() * 10,
+              duration: heart.duration,
               repeat: Infinity,
-              delay: i * 2,
+              delay: heart.delay,
               ease: "linear"
             }}
           >
@@ -235,8 +253,8 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
               transition={{ duration: 0.8 }}
               className="relative min-h-[400px] md:min-h-[500px] pt-8"
             >
-              {/* Polaroid di KIRI ATAS */}
-              <div className="absolute left-0 md:left-0 top-10 md:top-0 w-32 md:w-40 z-20">
+              {/* Polaroid di KIRI ATAS - Lebih kecil di mobile */}
+              <div className="absolute left-0 md:left-0 -top-4 md:top-0 w-24 md:w-32 lg:w-40 z-20">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: -15 }}
                   animate={{ opacity: 1, scale: 1, rotate: -12 }}
@@ -260,8 +278,8 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 </motion.div>
               </div>
 
-              {/* Polaroid di KIRI BAWAH */}
-              <div className="absolute left-4 md:left-10 top-48 md:top-40 w-28 md:w-36 z-20 hidden md:block">
+              {/* Polaroid di KIRI BAWAH - Hidden di mobile */}
+              <div className="absolute left-2 md:left-10 top-32 md:top-40 w-20 md:w-28 lg:w-36 z-20 hidden md:block">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: 10 }}
                   animate={{ opacity: 1, scale: 1, rotate: 8 }}
@@ -285,12 +303,12 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 </motion.div>
               </div>
 
-              {/* Teks Happy Birthday di TENGAH */}
+              {/* Teks Happy Birthday di TENGAH - Responsive */}
               <motion.div
                 initial={{ opacity: 0, y: -50, scale: 0.5 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.5 }}
-                className="text-center space-y-4 relative z-10 px-20 md:px-40"
+                className="text-center space-y-4 relative z-10 px-4 md:px-20 lg:px-40 mt-8 md:mt-0"
               >
                 <motion.div
                   initial={{ rotate: -180, scale: 0 }}
@@ -298,12 +316,12 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                   transition={{ type: 'spring', stiffness: 200, delay: 0.7 }}
                   className="inline-block"
                 >
-                  <Sparkles className="w-12 h-12 text-yellow-400 mx-auto mb-2" />
+                  <Sparkles className="w-8 h-8 md:w-12 md:h-12 text-yellow-400 mx-auto mb-2" />
                 </motion.div>
                 
                 {/* ✅ DIPERBAIKI: Tambah px-4 py-2 leading-tight agar tidak terpotong */}
                 <motion.h1 
-                  className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent px-4 py-2 leading-tight"
+                  className="text-3xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-yellow-400 bg-clip-text text-transparent px-2 md:px-4 py-2 leading-tight"
                   animate={{
                     filter: ['drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))', 'drop-shadow(0 0 40px rgba(168, 85, 247, 0.8))', 'drop-shadow(0 0 20px rgba(236, 72, 153, 0.5))']
                   }}
@@ -313,7 +331,7 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 </motion.h1>
                 
                 <motion.h2 
-                  className="text-3xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300"
+                  className="text-2xl md:text-4xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300"
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.9 }}
@@ -326,20 +344,20 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                     animate={{ scale: [1, 1.3, 1], rotate: [0, 15, -15, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
-                    <Heart className="w-5 h-5 md:w-6 md:h-6 fill-pink-500 text-pink-500" />
+                    <Heart className="w-4 h-4 md:w-6 md:h-6 fill-pink-500 text-pink-500" />
                   </motion.div>
-                  <span className="text-sm md:text-lg font-medium tracking-wider">With Love</span>
+                  <span className="text-xs md:text-lg font-medium tracking-wider">With Love</span>
                   <motion.div
                     animate={{ scale: [1, 1.3, 1], rotate: [0, -15, 15, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
                   >
-                    <Heart className="w-5 h-5 md:w-6 md:h-6 fill-pink-500 text-pink-500" />
+                    <Heart className="w-4 h-4 md:w-6 md:h-6 fill-pink-500 text-pink-500" />
                   </motion.div>
                 </div>
               </motion.div>
 
-              {/* Polaroid di KANAN ATAS */}
-              <div className="absolute right-0 md:right-0 top-20 md:top-10 w-32 md:w-40 z-20">
+              {/* Polaroid di KANAN ATAS - Lebih kecil di mobile */}
+              <div className="absolute right-0 md:right-0 -top-4 md:top-10 w-24 md:w-32 lg:w-40 z-20">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: 15 }}
                   animate={{ opacity: 1, scale: 1, rotate: 12 }}
@@ -363,8 +381,8 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                 </motion.div>
               </div>
 
-              {/* Polaroid di KANAN BAWAH */}
-              <div className="absolute right-4 md:right-10 top-56 md:top-48 w-28 md:w-36 z-20 hidden md:block">
+              {/* Polaroid di KANAN BAWAH - Hidden di mobile */}
+              <div className="absolute right-2 md:right-10 top-32 md:top-48 w-20 md:w-28 lg:w-36 z-20 hidden md:block">
                 <motion.div
                   initial={{ opacity: 0, scale: 0, rotate: -10 }}
                   animate={{ opacity: 1, scale: 1, rotate: -8 }}
