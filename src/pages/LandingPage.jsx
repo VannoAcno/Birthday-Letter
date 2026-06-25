@@ -15,7 +15,7 @@ function LandingPage() {
   })
 
   // Target: 25 Juni 2026, jam 15:10 (3:10 PM)
-  const targetDate = new Date('2026-06-27T00:00:00').getTime()
+  const targetDate = new Date('2026-06-25T17:30:00').getTime()
 
   useEffect(() => {
     const timer = setInterval(() => {
