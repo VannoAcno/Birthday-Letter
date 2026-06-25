@@ -148,7 +148,7 @@ function LandingPage() {
           transition={{ delay: 0.8 }}
         >
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 max-w-md md:max-w-none mx-auto">
+          <div className="grid grid-cols-4 lg:grid-cols-4 gap-3 md:gap-6 max-w-md lg:max-w-2xl mx-auto">
             {[
               { value: timeLeft.days, label: 'DAYS' },
               { value: timeLeft.hours, label: 'HOURS' },
