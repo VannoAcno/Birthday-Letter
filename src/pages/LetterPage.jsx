@@ -18,15 +18,15 @@ function LetterPage() {
 
   const letterText = `Selamat ulang tahun, bebekk... 🎂
 
-Hari ini adalah hari spesial, hari di mana seseorang yang sangat berarti lahir ke dunia. Dan aku bersyukur pernah menjadi bagian dari hidupmu.
+Aku gak tau kamu lagi ngapain sekarang, tapi aku harap kamu lagi senyum hari ini. Karena hari ini hari kamu.
 
-Aku masih ingat kenangan-kenangan indah kita. Tertawa bersama, berbagi cerita, dan momen-momen yang tak akan pernah terlupakan.
+Jujur, kadang aku masih inget momen-momen kita. Waktu kita ketawa bareng, waktu kita cerita-cerita sampai malem, waktu kita... ya gitu deh. Momen-momen yang gak bakal bisa aku lupain.
 
-Meski kini kita sudah tidak bersama, aku tetap mendoakan yang terbaik untukmu. Semoga kamu selalu bahagia, sehat, dan sukses dalam segala hal.
+Mungkin sekarang kita udah gak bareng lagi, tapi aku tetep doain kamu. Semoga kamu selalu bahagia, sehat, dan dapetin semua yang kamu impikan.
 
-Terima kasih sudah pernah ada. Terima kasih untuk semua kenangan indahnya.
+Makasih ya udah pernah jadi bagian dari hidupku. Itu beneran berarti.
 
-Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
+Happy birthday, bebekk. Take care of yourself. ❤️
 
 - Dari aku, Vano -`
 
@@ -490,8 +490,8 @@ Selamat merayakan hidup. You deserve all the happiness in the world. ❤️
                         transition: { duration: 0.3 }
                       }}
                       className={`${isMobile
-                          ? 'relative w-[45%] inline-block m-2'
-                          : 'absolute w-56 md:w-64'
+                        ? 'relative w-[45%] inline-block m-2'
+                        : 'absolute w-56 md:w-64'
                         }`}
                       style={
                         isMobile
